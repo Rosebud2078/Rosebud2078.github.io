@@ -1,10 +1,9 @@
 # collected puzzlescript games
-hello. i have collected around 700 puzzlescript games.
+hello. i have collected around 700 puzzlescript games. I collected these so me and my friends could access them easily during school, but it was tedious to download each one to play it. So im trying to put them all into a website. i dont know how to use github
 
 this is by no means a database of all of them, here is a more thorough [database](https://pedrosworks.com/articles/puzzlescript-database)
 
 I obtained these from various other sources online:
-
 [itch.io](https://itch.io/games/tag-puzzlescript), [increpare games](https://www.increpare.com/categories/puzzlescript.html), [Pedro's Selected PuzzleScript Games](https://pedrosworks.com/articles/selected-games),
 [PuzzleScript Gallery](https://puzzlescriptgallery.tumblr.com/), [PuzzleScript Plus Gallery](https://auroriax.github.io/PuzzleScript/Gallery/index.html), [PuzzleScript Next Gallery](https://puzzlescriptnext.polyomino.com/Gallery/index.html). There may be other sources i forgot but these are the main ones
 
