@@ -27,6 +27,31 @@
         p a {
               color: #A349A4;
         }
+        
+        #search {
+            display: block;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 30px auto;
+            padding: 12px 15px;
+            box-sizing: border-box;
+
+            background-color: #331733;
+            color: white;
+            border: 2px solid #A349A4;
+            border-radius: 8px;
+
+            font-size: 16px;
+            outline: none;
+        }
+
+        #search::placeholder {
+            color: #aaa;
+        }
+
+        #search:focus {
+            border-color: #d66dd7;
+        }
     
         .games {
             display: grid;
@@ -57,6 +82,8 @@
 <p>hello! none of these are my games, I just collected them, then put them on a website to play them easier<br>
     if you wanna see my whole spiel about this website, read the <a href="about.html">about page</a>
 </p>
+    
+<input type="text" id="search" placeholder="Search games...">
 
 <div class="games">
     <a class="game" href="1 Step 4ward, 2 Steps Back.html">1 Step 4ward, 2 Steps Back</a>
@@ -881,6 +908,25 @@
     <a class="game" href="🍡 -ooo- 🍡.html">🍡 -ooo- 🍡</a>
 
 </div>
+<script>
+    const search = document.getElementById("search");
+    const games = document.querySelectorAll(".game");
+
+    search.addEventListener("input", function() {
+        const query = search.value.toLowerCase();
+
+        games.forEach(function(game) {
+            const name = game.textContent.toLowerCase();
+
+            if (name.includes(query)) {
+                game.style.display = "";
+            } else {
+                game.style.display = "none";
+            }
+        });
+    });
+</script>
+
 </div>
 
 </body>
