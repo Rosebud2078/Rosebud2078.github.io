@@ -18,12 +18,12 @@ with open("index.html", "w", encoding="utf-8") as out:
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>My Games</title>
+    <title>collected puzzlescript games</title>
 
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #111;
+            background-color: #522552;
             color: white;
             margin: 0;
             padding: 30px;
@@ -33,6 +33,42 @@ with open("index.html", "w", encoding="utf-8") as out:
             text-align: center;
         }
 
+        p {
+            text-align: center;
+            color: #aaa;
+            font-size: 18px;
+            margin-top: -10px;
+            margin-bottom: 30px;
+        }
+        p a {
+              color: #A349A4;
+        }
+        
+        #search {
+            display: block;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 30px auto;
+            padding: 12px 15px;
+            box-sizing: border-box;
+
+            background-color: #331733;
+            color: white;
+            border: 2px solid #A349A4;
+            border-radius: 8px;
+
+            font-size: 16px;
+            outline: none;
+        }
+
+        #search::placeholder {
+            color: #aaa;
+        }
+
+        #search:focus {
+            border-color: #d66dd7;
+        }
+    
         .games {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -42,7 +78,7 @@ with open("index.html", "w", encoding="utf-8") as out:
         }
 
         .game {
-            background-color: #222;
+            background-color: #331733;
             color: #fff;
             padding: 15px;
             border-radius: 8px;
@@ -51,14 +87,19 @@ with open("index.html", "w", encoding="utf-8") as out:
         }
 
         .game:hover {
-            background-color: #444;
+            background-color: #A349A4;
         }
     </style>
 </head>
 
 <body>
 
-<h1>My Games</h1>
+<h1>collected puzzlescript games</h1>
+<p>hello! none of these are my games, I just collected them, then put them on a website to play them easier<br>
+    if you wanna see my whole spiel about this website, read the <a href="about.html">about page</a>
+</p>
+    
+<input type="text" id="search" placeholder="Search games...">
 
 <div class="games">
 """)
@@ -73,6 +114,26 @@ with open("index.html", "w", encoding="utf-8") as out:
         )
 
     out.write("""
+</div>
+<script>
+    const search = document.getElementById("search");
+    const games = document.querySelectorAll(".game");
+
+    search.addEventListener("input", function() {
+        const query = search.value.toLowerCase();
+
+        games.forEach(function(game) {
+            const name = game.textContent.toLowerCase();
+
+            if (name.includes(query)) {
+                game.style.display = "";
+            } else {
+                game.style.display = "none";
+            }
+        });
+    });
+</script>
+
 </div>
 
 </body>
