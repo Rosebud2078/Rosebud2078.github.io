@@ -1,0 +1,260 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>The Elephant in the Mirror</title>
+<style>
+
+body {
+	background-color:black; /*don't modify this line at all, needs text to be the same*/
+	font-family:"Courier New", Courier, monospace
+}
+#gameCanvas {
+  position:absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  bottom: 0px;
+  right:0px;
+  border: 0px;
+  background-color: black; /*don't modify this line at all, needs text to be the same*/
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+} 
+
+h1 {
+	color:lightblue;/*don't modify this line at all, needs text to be the same*/
+	font-weight:normal;
+}
+a {
+	color:lightblue;/*don't modify this line at all, needs text to be the same*/
+}
+.title {	
+	background-color:none;
+	text-align:center;
+	font-size:100%;
+	float:center;
+	color:gray;
+	position:absolute;
+	left:10%;
+	right:10%;
+	top:0%;
+	height:10%;
+}
+
+.footer {	
+	background-color:none;
+	text-align:center;
+	float:center;
+	color:white;
+	position:absolute;
+	margin-top:10px;
+	left:10%;
+	right:10%;
+	top:90%;
+	bottom:10%;
+}
+.gameContainer {
+	background-color:none;
+	position:absolute;
+	left:10%;
+	right:10%;
+	top:70px;
+	bottom:70px; touch-action: none;
+}
+
+  .mobile-menu {
+      position: relative;
+      top: 4em;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: bold;
+      border-radius: 0.25em;
+  }
+
+  .mobile-menu.item-count-3 {
+      width: 30em;
+  }
+  .mobile-menu.item-count-3 .button {
+      width: 28.3333%;
+      /* scale the height of the button relative to the width of .mobile-menu */
+      padding: 7.5% 0%;
+  }
+
+  .mobile-menu.item-count-2 {
+      width: 20em;
+  }
+  .mobile-menu.item-count-2 .button {
+      width: 46%;
+      /* scale the height of the button relative to the width of .mobile-menu */
+      padding: 12.1765% 0%;
+  }
+
+  .mobile-menu.item-count-1 {
+      width: 10em;
+  }
+  .mobile-menu.item-count-1 .button {
+      width: 98%;
+      /* scale the height of the button relative to the width of .mobile-menu */
+      padding: 26.5% 0%;
+  }
+
+  .mobile-menu,
+  .tab-icon,
+  .mobile-menu .close {
+      background: rgba(0,0,0,0.4);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      color: rgba(255, 255, 255, 1);
+  }
+
+  .mobile-menu .button {
+      margin: 2%;
+      border-radius: 0.25em;
+      text-align: center;
+      float: left;
+  }
+  .mobile-menu .clear {
+      clear: both;
+  }
+
+  .tab-affordance,
+  .close-affordance {
+      width: 6em;
+      height: 6em;
+      position: absolute;
+      z-index: 1000;
+  }
+
+  .tab-affordance {
+      left: -2em;
+      top: 55px;
+  }
+
+  .close-affordance {
+      left: -4em;
+      top: -1em;
+  }
+
+  .tab-icon,
+  .mobile-menu .close {
+      height: 48px;
+      position: absolute;
+      border-radius: 6px;
+  }
+
+  .tab-icon {
+      left: -0.5em;
+      top: 70px;
+      width: 18px;
+      border-radius: 0 6px 6px 0;
+      border-left: 0;
+  }
+
+  .mobile-menu .close {
+      left: -18px;
+      width: 18px;
+      top: 0px;
+      border-radius: 6px 0 0 6px;
+      border-right: 0;
+  }
+
+  .tab-icon .slice,
+  .mobile-menu .close .slice {
+      margin: 4.5px 1px;
+      width: 2px;
+      height: 80%;
+      background: rgba(255, 255, 255, 0.4);
+  }
+
+  .tab-icon .slice {
+      float: right;
+  }
+
+  .tab-icon .slice:first-child {
+       margin-right: 4.5px;
+  }
+
+  .mobile-menu .close .slice {
+      float: left;
+  }
+  .mobile-menu .close .slice:first-child {
+       margin-left: 4.5px;
+  }
+
+  @media screen and (max-width: 32em) {
+      .mobile-menu {
+          font-size: 0.8em;
+          width: 90%;
+      }
+  }
+  @media screen and (max-width: 24em) {
+      .mobile-menu {
+          font-size: 0.65em;
+          width: 90%;
+      }
+  }
+
+ .disable-select {
+     -webkit-touch-callout: none;
+     -webkit-user-select: none;
+     -khtml-user-select: none;
+     -moz-user-select: none;
+     -ms-user-select: none;
+     user-select: none;
+ }
+
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+<body>
+<div class="title"><h1>The Elephant in the Mirror</h1></div>
+<div class="gameContainer">
+<canvas 
+    id="gameCanvas" 
+    onmousemove="mouseMove(event)" 
+    onmouseout="mouseOut()"
+    onkeydown="keyDown()"
+></canvas>
+</div> 
+<div class="footer">
+<span id="errormessage" style="color:red;"></span>
+<a href="http://clement-sparrow.itch.io/">clement-sparrow.itch.io/</a>
+</div>
+
+<script src="js/globalVariables.js"></script>
+<script src="js/debug_off.js"></script>
+<script src="js/font.js"></script>
+<script src="js/rng.js"></script>
+<script src="js/riffwave.js"></script>
+<script src="js/sfxr.js"></script>
+<script src="js/codemirror/codemirror.js"></script>
+<script src="js/colors.js"></script>
+<script src="js/graphics.js"></script>
+<script src="js/engine/log.js"></script>
+<script src="js/engine/message_screen.js"></script>
+<script src="js/engine/level.js"></script>
+<script src="js/engine/bitvec.js"></script>
+<script src="js/engine/rule.js"></script>
+<script src="js/engine/cell_pattern.js "></script>
+<script src="js/engine/engine_base.js"></script>
+<script src="js/compiler/identifiers.js"></script>
+<script src="js/compiler/rule.js"></script>
+<script src="js/compiler/rule_parser.js"></script>
+<script src="js/compiler/rule_expansion.js"></script>
+<script src="js/compiler/rule_groups.js"></script>
+<script src="js/parser.js"></script>
+<script src="js/compiler.js"></script>
+<script src="js/inputoutput.js"></script>
+<script src="js/mobile.js"></script>
+
+<!-- <script src="js/gamedat.js"></script> -->
+<script type="text/javascript">
+compile(["restart"], "title The Elephant in the Mirror\nauthor ClementSparrow\nhomepage https://clement-sparrow.itch.io/\n\nrun_rules_on_level_start\nnoaction\nsprite_size 15x15\n\n========\n(LEVEL LAYOUT)\n========\n\nOBJECTS\n\nBackground \n#9c9c9c #a0a0a0 #a4a4a4 #a8a8a8 #b0b0b0\n222222222222221\n400000000000001\n400000000002001\n400200000000001\n400000010000001\n400000000000001\n400000000000001\n400001000000001\n400000000000001\n400000002000001\n400000000000001\n402000000000101\n400000000000001\n400000000000001\n433333333333333\n\n\nWall\nblack\n\n\n========\n(LIVING SPRITES)\n========\n\nTAGS\nNPC = Lady Gentleman\nHuman = NPC Hero\nObserver = Elephant Human\n\n\nOBJECTS\n\nSprite:Hero:right\nblue black yellow #ffb8a8\n...............\n......33.......\n.....003.......\n.....00........\n.....000.......\n....00001......\n...222301......\n...22233.......\n...222301......\n....00001......\n.....000.......\n.....00........\n.....003.......\n......33.......\n...............\n\nSprite:Hero:directions\nblue black yellow #ffb8a8\ncopy: Sprite:Hero:right rot:right:>\n\n\nScaredHero:right\nblue #444 yellow #ddee99\n...............\n...33..........\n...30..........\n....00.........\n...2000...11...\n....22000111...\n..222223311....\n....222333.....\n..222223311....\n....22000111...\n...2000...11...\n....00.........\n...30..........\n...33..........\n...............\n\nScaredHero:directions\nblue #444 yellow #de9\ncopy: ScaredHero:right rot:right:>\n\n\n\nSprite:Elephant:right\npink white #d68 black\n...............\n...............\n........00.....\n.........0.....\n........20.....\n..20000220011..\n.20000002030...\n00000000000002.\n.20000002030...\n..20000220011..\n........20.....\n.........0.....\n........00.....\n...............\n...............\n\nSprite:Elephant:directions\npink white #d68 black\ncopy: Sprite:Elephant:right rot:right:>\n\nSprite:Gentleman:right\nwhite #80c0ff red green black #ffb8a8\n...............\n......55.......\n.....005.......\n.....00........\n.....000.......\n....00004......\n...444504......\n...44455.......\n...444504.11...\n....000041221..\n.....00..1231..\n.....00.5511...\n.....0005......\n...............\n...............\n\nSprite:Gentleman:directions\nwhite #80c0ff red green black #ffb8a8\ncopy: Sprite:Gentleman:right rot:right:>\n\nSprite:Lady:right\n#f00 #80c0ff red green yellow #ffb8a8\n...............\n......55.......\n.....005.......\n.....00........\n.....000.......\n...400000......\n..4444500......\n..444455.......\n..4444500.11...\n...4000001221..\n.....00..1231..\n.....00.5511...\n.....0005......\n...............\n...............\n\nSprite:Lady:directions\n#f00 #80c0ff red green yellow #ffb8a8\ncopy: Sprite:Lady:right rot:right:>\n\n\nLEGEND\nPlayer = Sprite:Hero:directions\n\nSOUNDS\nSprite:Elephant:directions move 68164704 (94986907) (70794108)\nsfx0 15257108 (4426908) (15257108 Elephant sound. Actually \"donkey\" from PedroPSI sound database) (83536508)\n\nScaredHero:directions create 45846508 (41981908)\n\n========\n(OBJECTS)\n========\n\nOBJECTS\n\nPeanut\nlightbrown white orange\n...............\n...............\n.....222.......\n....20202......\n....2022...222.\n..2202....2002.\n.20202...20200.\n.20202...2202..\n..22...2202....\n......20202....\n......22002....\n.......222.....\n...............\n...............\n...............\n\nMirror1\n#90d0ff #0090ff #B06020\n............22.\n...........2102\n...........1012\n..........1012.\n.........101...\n........101....\n.......101.....\n......101......\n.....101.......\n....101........\n...101.........\n.2101..........\n2101...........\n2012...........\n.22............\n\nMirror2\n#90d0ff #0090ff #B06020\ncopy: Mirror1 |\n\nBrokenMirror1\n#90d0ff #0090ff #B06020\n............22.\n...........2102\n...1.....0.2112\n..........0122.\n.......1.1.01..\n...10..01......\n..........1....\n........101....\n.0.....101.....\n.1....101......\n..1............\n.220...1.......\n2122......1....\n2022.....101...\n.22............\n\nBrokenMirror2\n#90d0ff #0090ff #B06020\ncopy: BrokenMirror1 |\n\n\nLEGEND\n\nMirror = Mirror1 or Mirror2\nPushable = Peanut or Mirror\nBlocking = Mirror or Wall or Sprite:Observer:directions or Peanut\n\n\nSOUNDS\n\nPushable move 94359908\nMirror destroy 23456708 (91457508) (70385308) (89909708) (51395108) (59785708)\nPeanut destroy 13678908\n\n\n========\n(STATES)\n========\n\nOBJECTS\n\nTarget\n#80c0ff red green\n...............\n...............\n........22.....\n.00....2222..0.\n..01111111110..\n...011111110...\n....0111110....\n.....01110.....\n......010......\n.......0.......\n.......0.......\n.......0.......\n....0000000....\n...............\n...............\n\n\n\nScared\ntransparent\n\n\nPlaceToBeScared\ntransparent\n\nCannotFace:directions\ntransparent\n\nMustRunToward:directions\ntransparent\n\nRunning\ntransparent\n\nDoNotTrumpet\ntransparent\n\n\n========\n(VISION SYSTEM)\n========\n\nMAPPINGS\n\ndirections => Reflected1\nup right down left -> left down right up\n\ndirections => Reflected2\nup right down left -> right up left down\n\n\nOBJECTS\n\nSeenFrom:directions\ntransparent\n\nMustLook:directions\ntransparent\n\nLooking:directions\ntransparent\n\nLEGEND\nOpaque = Wall or Sprite:Observer:directions\n\n\n\n=========\n(GRAPHICAL DETAILS)\n=========\n\nOBJECTS\nAmbiantOcclusion:up\n#7f7f7f #8f8f8f\n000000000000000\n111111111111111\n...............\n...............\n...............\n...............\n...............\n...............\n...............\n...............\n...............\n...............\n...............\n...............\n...............\n\nAmbiantOcclusion:directions\n#7f7f7f #8f8f8f\ncopy: AmbiantOcclusion:up rot:up:>\n\nAmbiantOcclusionInnerCorner:up\n#7f7f7f #8f8f8f\n.............00\n.............10\n...............\n...............\n...............\n...............\n...............\n...............\n...............\n...............\n...............\n...............\n...............\n...............\n...............\n\nAmbiantOcclusionInnerCorner:directions\n#7f7f7f #8f8f8f\ncopy: AmbiantOcclusionInnerCorner:up rot:up:>\n\nAmbiantOcclusionOutterCorner:up\n#7f7f7f #8f8f8f\n.............10\n.............11\n...............\n...............\n...............\n...............\n...............\n...............\n...............\n...............\n...............\n...............\n...............\n...............\n...............\n\nAmbiantOcclusionOutterCorner:directions\n#7f7f7f #8f8f8f\ncopy: AmbiantOcclusionOutterCorner:up rot:up:>\n\n\n\n\n================\nCOLLISIONLAYERS\n================\n\nBackground\ndirections -> AmbiantOcclusion:directions\ndirections -> AmbiantOcclusionInnerCorner:directions\ndirections -> AmbiantOcclusionOutterCorner:directions\nBrokenMirror1, BrokenMirror2\nTarget, PlaceToBeScared\n\nPeanut, Mirror, Sprite:Observer:directions, ScaredHero:directions Wall\n\nLooking:directions\ndirections -> SeenFrom:directions\ndirections -> MustLook:directions, CannotFace:directions, MustRunToward:directions\nScared\nRunning\nDoNotTrumpet\n\n======\nRULES\n======\n\n\n(The player faces the direction he's going toward)\n[ > Sprite:Hero:directions ] -> [ > Sprite:Hero:> ] again\n\n\n(=== GRAPHICAL DETAILS ===)\n[ no Wall | Wall ] -> [ AmbiantOcclusion:> | Wall ]\n[ AmbiantOcclusion:> AmbiantOcclusion:v ] -> [ AmbiantOcclusion:> AmbiantOcclusion:v AmbiantOcclusionInnerCorner:> ]\n[ AmbiantOcclusion:^ | no AmbiantOcclusion:^ no Wall ] -> [ AmbiantOcclusion:^ | AmbiantOcclusionOutterCorner:< ]\n\n\n(=== VISION ===)\n\n(== Compute the directions each observer can gaze to ==)\n\n(the player only looks in front of him)\n[ Sprite:Hero:> ] -> [ Sprite:Hero:> MustLook:> ]\n\n(elephants cannot look behind them, and they don't look on the sides when they are charging)\n[ Sprite:Elephant:> Running ] -> [ Sprite:Elephant:> Running MustLook:> ]\n[ Sprite:Elephant:> no Running ] -> [ Sprite:Elephant:> MustLook:> MustLook:^ MustLook:v ]\n\n(NPCs can look in all directions)\n[ Sprite:NPC:directions ] -> [ Sprite:NPC:directions MustLook:up MustLook:right MustLook:down MustLook:left ]\n\n\n(== Propagate rays and set reactions ==)\n\nstartloop\n\n(= select a random observer and direction and start a vision ray =)\nrandom [ Sprite:Observer:directions MustLook:> ] -> [ Sprite:Observer:directions Looking:> SeenFrom:< ]\n\n(= propagate vision rays =)\n[ Looking:> | ] -> [ Looking:> | SeenFrom:< ]\n[ SeenFrom:< no Opaque no Mirror | ] -> [ SeenFrom:< | SeenFrom:< ]\n+ [ SeenFrom:Reflected1 no Opaque Mirror1 | ] -> [ SeenFrom:Reflected1 Mirror1 | SeenFrom:< ]\n+ [ SeenFrom:Reflected2 no Opaque Mirror2 | ] -> [ SeenFrom:Reflected2 Mirror2 | SeenFrom:< ]\n\n(= react to seing something =)\n\n(Hero is scared by elephants)\n[ Looking:> Sprite:Hero:> ] [ Sprite:Elephant:directions SeenFrom:directions ] -> [ Looking:> Scared stationary ScaredHero:> ] [ Sprite:Elephant:directions SeenFrom:directions ]\n\n(NPCs cannot look to elephants)\n[ Looking:> Sprite:NPC:directions ] [ Sprite:Elephant:directions SeenFrom:directions ] -> [ Looking:> Sprite:NPC:directions CannotFace:> ] [ Sprite:Elephant:directions SeenFrom:directions ]\n\n(Elephants move toward peanuts)\n[ Looking:> Sprite:Elephant:directions ] [ Peanut SeenFrom:directions ] -> [ Looking:> Sprite:Elephant:directions MustRunToward:> ] [ Peanut SeenFrom:directions ]\n\n(= cleanup vision markers =)\n[ SeenFrom:directions ] -> [ ]\n[ Looking:directions ] -> [ ]\n\nendloop\n\n\n(== NPC BEHAVIOR ==)\n\n(NPCs who cannot find a cumfortable direction get scared)\n[ Sprite:NPC:directions CannotFace:up CannotFace:right CannotFace:down CannotFace:left ] -> [ Sprite:NPC:directions Scared ]\n\n(reorient NPCs by turning them)\n(otherwise they turn counterclockwise)\nstartloop\n(TODO: this does not work, but it should?\nrandom [ Sprite:NPC:> CannotFace:> ] -> [ Sprite:NPC:^ CannotFace:> ])\nrandom [ Sprite:Lady:> CannotFace:> ] -> [ Sprite:Lady:^ CannotFace:> ]\nrandom [ Sprite:Gentleman:> CannotFace:> ] -> [ Sprite:Gentleman:^ CannotFace:> ]\nendloop\n\n(cleanup NPC constraints)\n[ CannotFace:directions ] -> [ ]\n\n\n(== ELEPHANT BEHAVIOR ==)\n\n(elephants run toward peanuts)\nstartloop\nrandom [ stationary Sprite:Elephant:directions MustRunToward:> ] -> [ > Sprite:Elephant:> MustRunToward:> ]\n[ > Sprite:Elephant:> no Running no DoNotTrumpet ] -> sfx0\n[ > Sprite:Elephant:> MustRunToward:directions ] -> [ > Sprite:Elephant:> Running ] again\nendloop\n\n(cleanup Elephant constraints)\n[ MustRunToward:directions ] -> [ ]\n[ DoNotTrumpet ] -> [ ]\n\n(elephants eat peanuts)\n(Todo: should humans also eat peanuts?)\n[ > Sprite:Elephant:> Running | Peanut ] -> [ > Sprite:Elephant:> | ] (todo: peanut cracking sound)\n\n(elephants push mirrors or break them, and stop running)\n[ > Sprite:Elephant:> Running | Mirror | no Blocking ] -> [ > Sprite:Elephant:> | > Mirror DoNotTrumpet | ] again\n[ > Sprite:Elephant:> Running | stationary Mirror1 ] -> [ > Sprite:Elephant:> | BrokenMirror1 DoNotTrumpet ] again\n[ > Sprite:Elephant:> Running | stationary Mirror2 ] -> [ > Sprite:Elephant:> | BrokenMirror2 DoNotTrumpet ] again\n\n(elephants keep running until they eat something or have no reason to run)\n[ > Sprite:Elephant:> Running | ] -> [ > Sprite:Elephant:> | Running ] again\n[ stationary Sprite:Elephant:> Running ] -> [ Sprite:Elephant:> ] again\n\n\n(== HERO'S BEHAVIOR ==)\n\n(player pushes pushables, but turns the head clockwise when doing so.)\n[ > Sprite:Hero:> | Pushable no PlaceToBeScared ] -> [ > Sprite:Hero:v | > Pushable ] again\n[ > Sprite:Hero:> | Pushable PlaceToBeScared ] -> [ > Sprite:Hero:> | > Pushable PlaceToBeScared ] again\n\n\n==============\nWINCONDITIONS\n==============\n\nAll Sprite:Hero:directions on Target\nAll Scared on PlaceToBeScared\n\n=======\nLEGEND\n=======\n\n. = Background\n# = Wall\ni = Sprite:Hero:up\nj = Sprite:Hero:right\nk = Sprite:Hero:down\nl = Sprite:Hero:left\nE = Sprite:Elephant:up\nF = Sprite:Elephant:right\nG = Sprite:Elephant:down\nH = Sprite:Elephant:left\nM = Sprite:Gentleman:down\nN = Sprite:Gentleman:up\nO = Sprite:Gentleman:right\nZ = Sprite:Gentleman:left\nQ = Sprite:Lady:down\nR = Sprite:Lady:up\nS = Sprite:Lady:right\nT = Sprite:Lady:left\nP = Peanut\nd = Peanut and PlaceToBeScared\nx = Target\n/ = Mirror1\n\\ = Mirror2\n\n=======     \nLEVELS\n=======\n\nmessage I'm late to the open bar party! Quick, let's find a drink before there's nothing left!\n\n(The Elephant Accident)\n#########\n#mxmmqq##\n#......##\n#......h#\n#.d....##\n#r.nrnr##\n##.######\nj..######\n#########\n\nmessage That elephant almost killed me!\nmessage That was so scary! I can't help but replaying the scene again and again in my head...\nmessage I cannot sleep. I don't want to see any other elephant in my life, ever. And I need another drink.\n\n(More Walking)\n##########\n#q.p....p#\n#....n.n.#\n#.m.r..ep#\n#...r..###\n##.qm..x##\n##e...pn##\n####.#####\n#....#####\n#i########\n\nmessage Everybody here just thinks about drinking. Nobody even notices that peanuts are served with the drinks. All these peanuts... No wonder it attracts the feral elephants.\n\n(The Bait)\n##########\n##########\n##...p.z##\n##.pmr.x##\n##..r..z##\n##s...er##\n####.#####\n####i#####\n\n(Rows and Order)\n#######x#\n#gmqmqmg#\n#.......#\n#.q.n.q.#\n#.p.m.n.#\n#.n.r.m.#\n#.p...q.#\n#.r.n.r.#\n#.......h\n###i#####\n\n\n\nmessage Those peanuts-free events are the bests! I raise my glass to the allergics! At least, it should not attract the elephants. And yet, I feel observed from all directions by avid peanut eaters...\n(Clockwise is not Always Wise)\ng#g#g#g\n\\..x../\n#..m..#\n#.\\./.#\n#..r..#\n#.....#\n#i#####\n\n\nmessage The constant feeling of being observed makes me feel uncomfortable, and my hands are shacking. Let's hope I won't break some glass. They say it brings bad luck.\n\n(Bad Luck in the Rear-View Mirror)\n#############\n#./.....\\.###\n#....m....#x#\n#.p..r....#.#\nj..s......h\\#\n#.\\.nq....#.#\n#....n....#p#\n#....\\....###\n#############\n\n\n(Crunching Mirror, Hidden Peanut)\n###########\n#.........#\n#.........#\n#.........#\n#ot..\\....#\nx.o.\\p/...h\n#.........#\n#/........#\n#.q.......#\n#.rn......#\n#i#########\n\nmessage Avoiding the elephants is so exhausting... at least, the drinks make me feel better. When my thoughts bring back the vision of that elephant running toward me, I'm less scared.\n\nmessage Actually, it's kind of cute. With that sparkle in the eyes, we can see it really loves peanuts. And these big ears that balance as it runs... so cool!\n\nmessage Maybe I should accept my fear of elephants and learn to appreciate them.                            Or maybe I should drink less?\n\nmessage The end.                                                    [Actually, elephants don't like peanuts.]\n")
+</script>
+
+</body>
+</html>

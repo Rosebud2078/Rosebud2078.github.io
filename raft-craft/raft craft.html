@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Each Last Laugh for this Beached Raft Craft</title>
+
+<meta name="viewport" content="width=640" id="metaviewport">
+<script>
+if (screen.width > 640) {
+	var mvp = document.getElementById('metaviewport');
+	mvp.setAttribute('content','width=device-width,initial-scale=1');
+}
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!--<script src="js/bootstrap-dropdown.min.js"></script>-->
+<script src="puzzlescript-embed.js"></script>
+<script src="level-select.js"></script>
+<!--<link href="css/bootstrap-dropdown.css" rel="stylesheet" type="text/css" />-->
+<link href="style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+#levelselect {
+	position: relative;
+	margin-top: 1em;
+}
+
+#levelselect .dropdown-toggle {
+	width: 160px;
+}
+
+#levelselect .dropdown-menu {
+	position: absolute;
+	margin-left: -100px;
+	width: 200px;
+	left: 50%;
+	overflow: auto;
+	text-align: center;
+}
+
+.caret {
+	float: right;
+	margin-top: 0.5em;
+}
+</style>
+<script type="text/javascript">
+function onResize (event) {
+	var w = $('#game').width();
+	
+	var maxHeight = 4800;
+	var ratio = 0.75;
+	
+	var h = maxHeight;
+	
+	if (w*ratio < maxHeight) {
+		h = w*ratio;
+	}
+	
+	if (h > $(window).height()) {
+		h = $(window).height();
+	}
+	
+	$('#game').height(h);
+	
+	$('#levelselect ul').css('max-height', h + 'px');
+}
+
+$(function (){
+	function mobileHackery () {
+		Mobile.GestureHandler.prototype.showTab = function () {};
+		Mobile.GestureHandler.prototype.showMenu = function () {};
+		
+		var gestureHandler = null;
+		
+		var noAction = true;
+		var noUndo = false;
+        var noRestart = false;
+        
+        var buttonsHTML = '';
+        
+        //buttonsHTML += '[Swipe] Move';
+
+        if (!noAction) {
+        	//buttonsHTML += ' &nbsp; [Tap] Action';
+        }
+        if (!noUndo) {
+        	buttonsHTML += ' &nbsp; <span class="undo button">Undo</span>';
+        }
+        if (!noRestart) {
+        	buttonsHTML += ' &nbsp; <span class="restart button">Reset</span>';
+        }
+        
+        var controls = document.getElementById("controls");
+        
+        controls.innerHTML = buttonsHTML;
+		
+		var undo = controls.getElementsByClassName('undo')[0];
+		if (undo) {
+			undo.addEventListener('touchstart', function (event) {
+				event.stopPropagation();
+				$(undo).addClass("active");
+				if (gestureHandler) {
+					gestureHandler.emitKeydown('undo');
+				}
+			});
+			
+			undo.addEventListener('touchend', function (event) {
+				$(undo).removeClass("active");
+			});
+		}
+
+		var restart = controls.getElementsByClassName('restart')[0];
+		if (restart) {
+			restart.addEventListener('touchstart', function (event) {
+				event.stopPropagation();
+				$(restart).addClass("active");
+				if (gestureHandler) {
+					gestureHandler.emitKeydown('restart');
+				}
+			});
+			
+			restart.addEventListener('touchend', function (event) {
+				$(restart).removeClass("active");
+			});
+		}
+		
+		try {
+			Mobile.enable();
+		} catch (e) {}
+		
+		gestureHandler = Mobile._instance;
+		
+		gestureHandler.setFocusElement(document.getElementById('gameCanvas'));
+	}
+	
+	function addFocusStuff () {
+		if (Mobile.hasTouch()) {
+			$('#controls').hide();
+			
+			tryPlayTitleSound = function () {
+				tryPlaySimpleSound("titlescreen");
+				$('#controls').hide();
+			}
+
+			tryPlayStartGameSound = function () {
+				tryPlaySimpleSound("startgame");
+				$('#controls').show();
+			}
+		} else {
+			document.addEventListener('mousedown', function (event) {
+				if(event.target === canvas) {
+					$('#game').removeClass("unfocused");
+				} else {
+					$('#game').addClass("unfocused");
+				}
+			}, false);
+			
+			var controls = document.getElementById("controls");
+			
+			var controlsText = controls.innerHTML;
+			
+			controls.innerHTML = '[Space] Start game';
+			
+			tryPlayTitleSound = function () {
+				tryPlaySimpleSound("titlescreen");
+				controls.innerHTML = '[Space] Start game';
+			}
+
+			tryPlayStartGameSound = function () {
+				tryPlaySimpleSound("startgame");
+				controls.innerHTML = controlsText;
+			}
+		}
+		
+		/*var levelNames = [];
+		
+		for (var i = 1; i <= 9; i++)
+		{
+			levelNames.push("Level " + i);
+		}
+		
+		for (i = 8; i >= 1; i--)
+		{
+			levelNames.push("Level " + i + "*");
+		}*/
+		
+		//initLevelSelect('org.draknek.splittingheadache.v1', levelNames);
+		
+		onResize();
+	}
+	
+	PuzzleScript.embed(document.getElementById("game"), "501b255199119288c3d8f7dba2b48494", {
+		mobileCallback: mobileHackery,
+		callback: addFocusStuff
+	});
+	
+	window.addEventListener('resize', onResize, false);
+	
+	onResize();
+});
+</script>
+</head>
+<body>
+
+<div id="controls">
+[Arrows] Move &nbsp; [Z] Undo &nbsp; [R] Reset
+</div>
+
+<div id="game">
+</div>
+
+<!--<div id="levelselect" class="dropup"></div>-->
+
+</body>
+</html>

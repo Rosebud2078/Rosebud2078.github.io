@@ -1,0 +1,47 @@
+html, body, .fullscreen
+{
+    height: 100%;
+}
+
+body
+{
+    overflow: hidden;
+    width: 100%;
+    background-color: black;
+    color: white;
+}
+
+.controls
+{
+    margin-top: 10px;
+}
+
+.game
+{
+    background-color: black;
+    width: 100%;
+}
+
+.centered
+{
+    display: table;
+    margin: 0 auto;
+}
+
+.keys
+{
+    margin: 15px 0;
+}
+
+.keys dt
+{
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.keys dd
+{
+    display: inline-block;
+    margin-left: 0;
+    margin-right: 25px;
+}
