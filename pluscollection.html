@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PuzzleScript Plus Gallery Games</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #522552;
+            color: white;
+            margin: 0;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+            color: #aaa;
+            font-size: 18px;
+            margin-top: -10px;
+            margin-bottom: 30px;
+        }
+        p a {
+              color: #A349A4;
+        }
+        
+        #search {
+            display: block;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 30px auto;
+            padding: 12px 15px;
+            box-sizing: border-box;
+
+            background-color: #331733;
+            color: white;
+            border: 2px solid #A349A4;
+            border-radius: 8px;
+
+            font-size: 16px;
+            outline: none;
+        }
+
+        #search::placeholder {
+            color: #aaa;
+        }
+
+        #search:focus {
+            border-color: #d66dd7;
+        }
+    
+        .games {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .game {
+            background-color: #331733;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        .game:hover {
+            background-color: #A349A4;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>cPuzzleScript Plus Gallery Games</h1>
+<p>this is a collection of the 29 games listed in the <a href="https://auroriax.github.io/PuzzleScript/Gallery/index.html">puzzlescript plus gallery</a><br>
+    this is NOT a full collection of every puzzlescript plus game.
+</p>
+<h2><a href="index.html">Back to all games</a></h2>
+    
+<input type="text" id="search" placeholder="Search games...">
+
+<div class="games">
+    <a class="game" href="Sleight of Hat.html">Sleight of Hat</a>
+    <a class="game" href="Flying_Crowbar_Factory_Simulator_2022.html">Flying Crowbar Factory Simulator 2022</a>
+    <a class="game" href="Lab Rat-ional Thinking.html">Lab Rat-ional Thinking</a>
+    <a class="game" href="CookiesOverlapDelicious.html">Cookies, Overlap, Delicious!</a>
+    <a class="game" href="23 Lily Pads.html">23 Lily Pads</a>
+    <a class="game" href="microban 1.html">Microban 1</a>
+    <a class="game" href="Copernicus.html">Copernicus</a>
+    <a class="game" href="puzzleSquad.html">puzzleSquad</a>
+    <a class="game" href="Stars Align.html">Stars Align</a>
+    <a class="game" href="Cube.html">Cube</a>
+    <a class="game" href="Magician's hat Witch's hat 3.html">Magician's hat Witch's hat</a>
+    <a class="game" href="Magician's Cat.html">Magician's Cat</a>
+    <a class="game" href="Magiciban v1.html">Magiciban v1</a>
+    <a class="game" href="boxup-v2.html">Clickmazes BoxUp</a>
+    <a class="game" href="Ad Infinitum v4.html">Ad Infinitum v4</a>
+    <a class="game" href="Conway's Game of Sokoban.html">Conway's Game of Sokoban</a>
+    <a class="game" href="SlideFlipper.html">SlideFlipper</a>
+    <a class="game" href="Sokoban_ Dragged.html">Sokoban: Dragged</a>
+    <a class="game" href="Stone Haven v1.1.html">Stone Haven v1.1</a>
+    <a class="game" href="Simple Parallel Universe Game.html">Simple Parallel Universe Game</a>
+    <a class="game" href="Kye.ps 10.1.html">Kye.ps 10.1</a>
+    <a class="game" href="hex road blocks.html">hex road blocks</a>
+    <a class="game" href="Beams and Flowers 2.html">Beams and Flowers 2</a>
+    <a class="game" href="Line World.html">Line World</a>
+    <a class="game" href="crystal anomaly.html">crystal anomaly</a>
+    <a class="game" href="pipe twist.html">pipe twist</a>
+    <a class="game" href="Bodenhorizont.html">Bodenhorizont</a>
+    <a class="game" href="Gridblocked.html">Gridblocked</a>
+  
+</div>
+<script>
+    const search = document.getElementById("search");
+    const games = document.querySelectorAll(".game");
+
+    search.addEventListener("input", function() {
+        const query = search.value.toLowerCase();
+
+        games.forEach(function(game) {
+            const name = game.textContent.toLowerCase();
+
+            if (name.includes(query)) {
+                game.style.display = "";
+            } else {
+                game.style.display = "none";
+            }
+        });
+    });
+</script>
+
+</div>
+
+</body>
+</html>
