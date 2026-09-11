@@ -98,6 +98,10 @@ with open("index.html", "w", encoding="utf-8") as out:
 <p>hello! none of these are my games, I just collected them, then put them on a website to play them easier<br>
     if you wanna see my whole spiel about this website, read the <a href="about.html">about page</a>
 </p>
+
+<p>game collections:  (more to come)<br>
+    <a href="pluscollection.html">PuzzleScript Plus Gallery Games</a>, <a href="pedrocollection.html">Pedro's Selected PuzzleScript Games</a> 
+</p>
     
 <input type="text" id="search" placeholder="Search games...">
 
